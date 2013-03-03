@@ -1,29 +1,38 @@
-<!DOCTYPE html>  
-<html lang="en">  
-  <head>  
-    <meta charset="utf-8">  
-    <title>Movie Map Mashup</title>  
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Movie Map Mashup</title>
 
     <link href='http://fonts.googleapis.com/css?family=Kreon:400,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
-
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.ie.css" />
     <![endif]-->
-
     <script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>    
-    <script src="script.js"></script>  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="script.js"></script>
     <script src="film-locations.js"></script>
   </head>
 
   <body>
     <h1>Movie Map Mashup</h1>
     <div id="map"></div>
-    <img id="tvfoot" src="tvfoot.svg"></img>
+    <img id="tvfoot" src="tvfoot.svg">
     <footer>Martin Forsgren 2012</footer>
-  </body>  
+    <div id="freebase-attribution"> 
+      <img alt="Freebase CC-BY" height="23px" style="float: left; border: 0;" width="61px" src="http://www.freebase.com/policies/freebase-cc-by-61x23.png"/>
+      <div style="font-size: x-small; margin-left: 70px; height: 30px; ">
+        Source: <a href="http://www.freebase.com/view/film/film_location">Filming location</a> on
+        <a href="http://www.freebase.com/">Freebase</a>, licensed under
+        <a href="http://creativecommons.org/licenses/by/2.5/">CC-BY</a>.
+        Other content from <a href="http://en.wikipedia.org/wiki/">Wikipedia</a>,
+        licensed under <a href="http://creativecommons.org/licenses/by-sa/2.5/">CC BY-SA</a>
+      </div>
+    </div>
+  </body>
 
 </html>  
