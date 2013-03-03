@@ -13,7 +13,8 @@ var popupOptions = { maxHeight:400, minWidth:300 };
 var geolocation = "/location/location/geolocation";
 var title_id = "/imdb/topic/title_id";
 
-var query = {
+var locationQuery = {
+    cursor: true,
     query: [{
         "type": "/film/film_location",
         "name": null,
@@ -32,7 +33,7 @@ var query = {
             "longitude": null,
             "latitude":  null
         },
-        "limit":2000
+        "limit":20 // fetch the locations in chunks of 20
     }]
 }
 
@@ -55,7 +56,7 @@ function getSummary(wpId, callback) {
                   // use the first paragraph as summary:
                   //callback( $(wpText).filter("p").first() );
                   callback( wpText.match(/<p>.*<\/p>/)[0] );
- });
+              });
 }
 
 function showPopup(marker, filmLocation) {
@@ -94,22 +95,27 @@ function addMarker(filmLocation) {
     }
 }
 
+// See http://wiki.freebase.com/wiki/Timeouts for info on cursors
+function getLocations(cursor, callback) {
+		locationQuery.cursor = cursor;
+    $.getJSON(mqlreadUrl, { query: JSON.stringify(locationQuery) }, 
+              function(answer) {
+              	  // todo: check status/code
+              	  callback(answer.result);
+                	if(answer.cursor) 
+                    	getLocations(answer.cursor, callback);
+              });
+}
+
 function init() {
     // Initialize map:
-    map = L.map("map").setView([51.505, -0,09,], 3);    
+    map = L.map("map").setView([51.505, -0.09,], 3);    
     L.tileLayer(tileUrl, {
         attribution: 'Map data © OpenStreetMap contributors',
         maxZoom: 18
     }).addTo(map);
 
-    // Fetch filming location data and add markers:
-    $.getJSON(mqlreadUrl, 
-              { query: JSON.stringify(query)}, 
-              function(answer) {
-                  // todo: check status/code 
-                  locations = answer.result; // global to make debugging easier
-                  locations.forEach(addMarker);
-              });
+    getLocations(true, function(locations) { locations.forEach(addMarker); });
 }
 
 window.addEventListener('load', init, false);
