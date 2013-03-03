@@ -5,5 +5,4 @@ A mashup showing filming locations on a map. It uses [Leaflet](http://leafletjs.
 coordinates and images and [Wikipedias API](http://www.mediawiki.org/wiki/API:Main_page) 
 to get more information about the locations. 
 
-[Try it!](http://htmlpreview.github.com?https://github.com/dentrado/movie-map-mashup)
-
+[Try it!](http://htmlpreview.github.com/?https://github.com/dentrado/movie-map-mashup/blob/master/index.html)
